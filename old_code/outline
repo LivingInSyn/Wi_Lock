@@ -1,0 +1,35 @@
+
+#1
+-Run at unlock - wait 1 minute
+-detect wifi
+    -if trusted - change lockout to 0
+    -if untrusted - change to default setting
+
+#2
+-need an account at install time to be able to access wpa_cli
+
+    -sudo wpa_cli status | grep "ssid="
+    
+    above returns:
+        bssid=00:26:99:2d:93:e0
+        ssid=UCONN-SECURE
+
+    
+
+#UNLOCK SIGNAL
+signal sender=:1.41 -> dest=(null destination) serial=1843 path=/com/canonical/Unity/Session; interface=com.canonical.Unity.Session; member=UnlockRequested
+#LOCK SIGNAL
+signal sender=:1.41 -> dest=(null destination) serial=1802 path=/com/canonical/Unity/Session; interface=com.canonical.Unity.Session; member=LockRequested
+
+#THE DBUS QUERY (bash)
+dbus-monitor --session "type='signal',interface='com.canonical.Unity.Session'"
+
+
+#Handle Suspend/Sleep by monitoring the dbus for LockRequested and UnlockRequested
+#On startup 
+    -change to default (failsafe)
+    
+#read current value
+    gsettings get org.gnome.desktop.session idle-delay
+#set a value
+    gsettings set org.gnome.desktop.session idle-delay 300

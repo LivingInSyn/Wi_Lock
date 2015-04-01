@@ -1,0 +1,10 @@
+new outline
+
+On Startup:
+    -) set locktime to 300
+    
+The Main loop:
+    -) Wait for some period of time (3s polling interval?)
+    -) check the SSID we're connected to:
+        -) if it's trusted, change locktime to 0/conf value
+        -) if it's not, change to 300
