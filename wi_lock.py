@@ -17,17 +17,23 @@ import ConfigParser
 import sys
 import os
 
-trusted_networks = ['UCONN-SECURE','fake_network']
+#init vars with some default values, just in case something goes wrong. These should be 'safe values'
+#trusted_time is safe at 0 by default because trusted_networks is empty by default
+trusted_networks = []
 trusted_time = 0
 no_trust_time = 300
 
 def extract_ssid():
     info = get_wpa_cli_status()
     start_index = info.find("\nssid")+6
-    stop_index = info.find("\n",start_index)
-    ssid = info[start_index:stop_index]
-    return ssid
-    
+    if(start_index != -1):
+        stop_index = info.find("\n",start_index)
+        ssid = info[start_index:stop_index]
+        return ssid
+    else:
+        ssid = None
+        return ssid
+
 def get_wpa_cli_status():
     info = subprocess.check_output(['wpa_cli','status'])
     return info
@@ -47,16 +53,24 @@ def find_current_dir():
         return application_path
     
 def pull_config():
+    #open up the config parser, and the cfg file
     config = ConfigParser.ConfigParser()
     path = find_current_dir()
     config_path = os.path.join(path,"wi_lock.cfg")
     config.read(config_path)
-    trusted_networks = config.get('Networks','networks',0)
+    #gotta get that global declaration
+    global trusted_networks, trusted_time, no_trust_time
+    #pull the config values
+    trusted_networks = config.get('Networks','networks',0).split(',')
+    trusted_time = int(config.get('Times','trusted_time',0))
+    no_trust_time = int(config.get('Times','no_trust_time',0))
     
     
 
 #set the initial locktime
 set_locktime(300)
+
+pull_config()
 
 #create the main loop:
 while 1:
