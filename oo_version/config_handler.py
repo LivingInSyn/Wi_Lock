@@ -13,6 +13,7 @@ class Config_Handler:
         self.trusted_networks = self.config.get('Networks','networks',0).split(',')
         self.trusted_time = int(self.config.get('Times','trusted_time',0))
         self.no_trust_time = int(self.config.get('Times','no_trust_time',0))
+        self.trusted_screen_time = int(self.config.get('Times','trusted_screen_time',0)
         
     def get_networks(self):
         return self.trusted_networks
@@ -22,6 +23,9 @@ class Config_Handler:
         
     def get_no_trust_time(self):
         return self.no_trust_time
+        
+    def get_trusted_screen_time(self):
+        return self.trusted_screen_time
         
     def find_current_dir(self):
         #returns the correct current working directory for exe's or py files

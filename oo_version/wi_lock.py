@@ -16,35 +16,18 @@ class Wi_Lock:
         self.trusted_networks = self.c_handler.get_networks()
         self.trust_time = self.c_handler.get_trusted_time()
         self.no_trust_time = self.c_handler.get_no_trust_time()
-        self.trust_screen_time = self.c_handler.get_trusted_screen_time()
-        
-        #ignore for now
-        #pull the current screen saver time
-        #self.screen_time = self.l_manager.get_screen_saver_time()
         
     def run(self):
-        a=0
         while 1:
-            #get the current ssid
             current_network = self.w_handler.current_network()
-            #if it's in trusted networks, do this
             if(current_network in self.trusted_networks):
                 self.l_manager.set_locktime(self.trust_time)
-                self.l_manager.set_screen_saver_time(self.trust_screen_time)
                 print('trusted network')
-            
-            #if it's not in the whitelist, do this
             else:
                 self.l_manager.set_locktime(self.no_trust_time)
-                self.l_manager.set_screen_saver_time(0)
                 print('not trusted network')
-                #print(self.l_manager.get_locktime())
-                #print(self.l_manager.get_screen_saver_time())
-            
-            #wait 30 seconds and poll again
             time.sleep(30)
-            print('debug_ping '+str(a))
-            a=a+1
+            print('debug_ping')
 
 
 
@@ -53,3 +36,10 @@ if __name__ == '__main__':
     main_app.run()
 
 
+
+#NEED AN EXIT HANDLER
+'''
+def exit_handler():
+    print("hit the exit handler")
+    set_locktime(no_trust_time
+'''

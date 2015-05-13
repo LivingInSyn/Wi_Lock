@@ -10,7 +10,7 @@ Code:
     github.com/livinginsyn
     
 Breakdown of the files:
-    main.py - the main loop of the service
+    wi_lock.py - the main loop of the service
         holds the Wi_Lock class
     config_handler - handles the config file
         holds the Config_Handler class
