@@ -1,6 +1,7 @@
 import subprocess
 from subprocess import check_output
 import re
+import time
 
 class Lock_Manager:
     def __init__(self):
@@ -20,17 +21,13 @@ class Lock_Manager:
     def get_locktime(self):
         #locktime = subprocess.call(['gsettings','get','org.gnome.desktop.session','idle-delay'])
         out = check_output(['gsettings','get','org.gnome.desktop.session','idle-delay'])
-        locktime = re.search("uint32 (.*)\n",out).group(1)
-        locktime = int(locktime)
-        return locktime
+        return(int(out.split(" ")[1]))
     
     #the screensaver time is how long until it waits to go tothe screensaver. For the lock to work, 
     #the screensaver must come up when idle.
     def get_screen_saver_time(self):
         out = check_output(['gsettings','get','org.gnome.desktop.screensaver','lock-delay'])
-        screen_time = re.search("uint32 (.*)\n",out).group(1)
-        screen_time = int(screen_time)
-        return screen_time
+        return(int(out.split(" ")[1]))
     
     def set_screen_saver_time(self,screen_time):
         current_screen_time = self.get_screen_saver_time()
