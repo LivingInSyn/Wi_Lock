@@ -1,3 +1,12 @@
+'''
+By Jeremy Mill
+
+jeremymill@gmail.com
+github.com/livinginsyn
+
+licensed until the GPL V2
+'''
+
 import time 
 import config_handler
 import wifi_handler
