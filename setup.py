@@ -9,6 +9,7 @@ licensed until the GPL V2
 import shutil
 import os
 import subprocess
+import sys
 #setup.py
 
 failed = False
@@ -25,16 +26,24 @@ if not failed:
         failed = True
 
 #check dependencies
-'''#needs upstar / needs wpacli / needs gsettings'''
+'''#needs upstar / needs wpa_cli / needs gsettings'''
 if not failed:
     print('checking dependencies')
     #not that initctl **IS** upstart
-    depenencies = ['gsettings','wpacli','initctl']
+    dependencies = [['gsettings','help'],['wpa_cli','status'],['initctl','--version']]
+    
+    #check gsettings
+    '''try:
+        a = subprocess.check_output(['gsettings','help']
+    except OSError:
+        print("failed gsettings dependency test")
+        failed = True'''
+        
     for depend in dependencies:
         try:
-            subprocess.call([depend])
+            a = subprocess.check_output(depend)
         except OSError:
-            print("Failed on "+depend+"\n")
+            print("Failed on "+depend[0]+"\n")
             failed = True
 
     
@@ -69,7 +78,8 @@ if not failed:
         print("missing conf file\n")
         print("program can still be launched manually, but can't start as a service")
 
-print("You can start the service by running 'sudo service wi_lock start'\n")
+if not failed:
+    print("You can start the service by running 'sudo service wi_lock start'\n")
 
-
-print("Done")
+if not failed:
+    print("Done")
