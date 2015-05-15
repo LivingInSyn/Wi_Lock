@@ -37,25 +37,16 @@ class Wi_Lock:
         while 1:
             #get the current ssid
             current_network = self.w_handler.current_network()
-            f = open('debug1','w')
-            f.write('i hope this appears')
-            f.close()          
             #if it's in trusted networks, do this
             if(current_network in self.trusted_networks):
                 self.l_manager.set_locktime(self.trust_time)
                 self.l_manager.set_screen_saver_time(self.trust_screen_time)
-                f = open('debug_no','w')
-                f.write('shouldnt appear')
-                f.close()
                 #print('trusted network')
             
             #if it's not in the whitelist, do this
             else:
                 self.l_manager.set_locktime(self.no_trust_time)
                 self.l_manager.set_screen_saver_time(0)
-                f = open('debug_yes','w')
-                f.write('i hope this appears')
-                f.close()
                 #print('not trusted network')
             
             #for debugging
