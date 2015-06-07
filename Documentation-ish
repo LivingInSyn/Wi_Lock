@@ -21,10 +21,18 @@ Code:
 Breakdown of the files:
     main.py - the main loop of the service
         holds the Wi_Lock class
-    config_handler - handles the config file
+    config_handler.py - handles the config file
         holds the Config_Handler class
-    wifi_handler - manages wifi interaction
+    wifi_handler.py - manages wifi interaction
         holds the Wifi_Handler class
+    lock_manager.py - manages the lock times and screensaver times
+        holds the Lock_Manager class
+    post_stop.py - manages the post service stop actions
+        script only
+    wi_lock.cfg - the settings for wi_lock
+        see below for the format
+    wi_lock.conf - the upstart file
+        the settings for the upstart configuration
 
 
 Wifi_Handler
@@ -44,6 +52,8 @@ Config_Handler
         __init__ - 
             creates the config parser and sets the
             directory
+            
+            -sets the directory to the same place as where the file is
         
         read_config(config_file) -
             config_file needs a string for the name
@@ -51,6 +61,9 @@ Config_Handler
             the trusted networks (comma seperated
             string), the trusted time and the no
             trust time (both ints)
+            
+            -also now pulls then trusted-screen time: how long until 
+            the screensaver comes on on trusted networks
         
         get_networks() -
             returns the trusted networks in a list
@@ -62,6 +75,9 @@ Config_Handler
         get_no_trust_time() -
             returns an int for the NOT trusted network
             lockout time
+            
+        get_trusted_screen_time() -
+            returns an int for the trusted screensaver time
             
         find_current_dir() -
             find the current directory of the executable.
@@ -77,9 +93,44 @@ Lock_Manager
             calls a subprocess to gsettings to change
             the lockout time. Returns nothing
             
-        get_locktime():
+            lock_time is an int
+            
+        get_locktime(user):
+            user is a string with the username of the current user
+            i.e. 'user1'
+            
             calls a subprocess to gsettings and returns an 
-            int
+            int, called by set_locktime to do a comparrison
+            to see if a change needs to be made.
+            
+        set_screen_saver_time(screen_time) -
+            takes in an int to screen_time and sets the screen
+            saver time to this value.
+            
+        get_screen_saver_time(user):
+            user is a string of the current username
+            
+            returns an int with the curren screensaver time
+            
+        get_current_user():
+            returns a string of the current logged in user
+            
+        get_gid_current():
+            returns the GID of the current logged in user (an int)
+            
+        get_uid_current():
+            returns the uid of the current logged in user (an int)
+            
+Post_stop.py:
+    methods:
+        
+        __init__(self):
+            create a config handler object and a lock manager obj,
+            read the appropriate times from config handler and
+            set the no_trust_* times with lock manager
+            
+        no_trust_settings():
+            sets the times, returns nothing
 
 wi_lock.cfg
 
@@ -90,3 +141,18 @@ wi_lock.cfg
     [Times]
     trusted_time = (an integer from 0 to 1000)
     no_trust_time = (an integer from 0 to 1000)
+    trusted_screen_time = (an integer from 0 to 10000)
+    
+wi_lock.conf
+    upstart configuration file. Starts on networking having
+    started, tops on [!023456]
+    
+    Will try to restart on failure up to 10 times, with 10s in 
+    between each failure
+    
+    Logs startup attempts to /var/log/wi_lock.log
+    
+    Other logs(runtime logs) are available in 
+        /var/log/upstart/wi_lock.log
+        
+    
