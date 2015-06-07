@@ -42,25 +42,39 @@ class Lock_Manager:
     def get_locktime(self,user):
         #locktime = subprocess.call(['gsettings','get','org.gnome.desktop.session','idle-delay'])
         cmd =  ['sudo','-u',user,'-i','dbus-launch','--exit-with-session','gsettings','get','org.gnome.desktop.session','idle-delay']
-        out = subprocess.check_output(cmd)
+        
+        '''out = subprocess.check_output(cmd)
         print(out)
-        return(int(out.split(" ")[1]))
+        return(int(out.split(" ")[1]))'''
+        
+        out = subprocess.Popen(cmd,stdout=subprocess.PIPE,stderr=subprocess.PIPE,shell=False,close_fds=True)
+        (info,err)=out.communicate()
+        return(int(info.split(" ")[1]))
     
     #the screensaver time is how long until it waits to go tothe screensaver. For the lock to work, 
     #the screensaver must come up when idle.
-    def get_screen_saver_time(self,uid,gid):
-        cmd = ['gsettings','get','org.gnome.desktop.screensaver','lock-delay']
-        out = subprocess.check_output(cmd,preexec_fn=self.demote(uid,gid))
+    def get_screen_saver_time(self,user):
+        #cmd = ['gsettings','get','org.gnome.desktop.screensaver','lock-delay']
+        cmd = ['sudo','-u',user,'-i','dbus-launch','--exit-with-session','gsettings','get','org.gnome.desktop.screensaver','lock-delay']
+        #out = subprocess.check_output(cmd,preexec_fn=self.demote(uid,gid))
+        out = subprocess.Popen(cmd,stdout=subprocess.PIPE,stderr=subprocess.PIPE,shell=False,close_fds=True)
+        (info,err)=out.communicate()
         #print(out)
-        return(int(out.split(" ")[1]))
+        return(int(info.split(" ")[1]))
     
     def set_screen_saver_time(self,screen_time):
         uid = self.get_uid_current()
         gid = self.get_gid_current()
-        current_screen_time = self.get_screen_saver_time(uid,gid)
+        user=self.get_current_user()
+        current_screen_time = self.get_screen_saver_time(user)
         if(current_screen_time != screen_time):
-            cmd = ['gsettings','set','org.gnome.desktop.screensaver','lock-delay',str(screen_time)]
-            subprocess.call(cmd,preexec_fn=self.demote(uid,gid))
+            #cmd = ['gsettings','set','org.gnome.desktop.screensaver','lock-delay',str(screen_time)]
+            cmd = ['sudo','-u',user,'-i','dbus-launch','--exit-with-session','gsettings','set','org.gnome.desktop.screensaver','lock-delay',str(screen_time)]
+            
+            FNULL = open(os.devnull, 'w')
+            
+            #subprocess.call(cmd,preexec_fn=self.demote(uid,gid))
+            a = subprocess.call(cmd,stdout=FNULL,stderr=subprocess.STDOUT)
             print("setting screen time to "+str(screen_time))
         else:
             #print("screen times are equal")

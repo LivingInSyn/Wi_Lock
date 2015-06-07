@@ -26,9 +26,7 @@ class Wi_Lock:
         self.no_trust_time = self.c_handler.get_no_trust_time()
         self.trust_screen_time = self.c_handler.get_trusted_screen_time()
         
-        #ignore for now
-        #pull the current screen saver time
-        #self.screen_time = self.l_manager.get_screen_saver_time()
+        
         
         
         
