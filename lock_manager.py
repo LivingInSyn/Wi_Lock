@@ -16,6 +16,14 @@ import os
 class Lock_Manager:
     def __init__(self):
         def_locktime = 'bob'
+        #wait for user login
+        while 1:
+            try:
+                uid = self.get_uid_current()
+                break
+            except subprocess.CalledProcessError:
+                time.sleep(30)
+                pass
     
     #the locktimes are how long until gnome thinks it's been idle        
     def set_locktime(self,lock_time):
