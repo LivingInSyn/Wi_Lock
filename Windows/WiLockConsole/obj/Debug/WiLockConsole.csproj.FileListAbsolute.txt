@@ -1,0 +1,7 @@
+c:\users\jerem\documents\visual studio 2015\Projects\WiLockConsole\WiLockConsole\bin\Debug\WiLockConsole.exe.config
+c:\users\jerem\documents\visual studio 2015\Projects\WiLockConsole\WiLockConsole\bin\Debug\WiLockConsole.exe
+c:\users\jerem\documents\visual studio 2015\Projects\WiLockConsole\WiLockConsole\bin\Debug\WiLockConsole.pdb
+c:\users\jerem\documents\visual studio 2015\Projects\WiLockConsole\WiLockConsole\bin\Debug\ManagedWifi.dll
+c:\users\jerem\documents\visual studio 2015\Projects\WiLockConsole\WiLockConsole\obj\Debug\WiLockConsole.csprojResolveAssemblyReference.cache
+c:\users\jerem\documents\visual studio 2015\Projects\WiLockConsole\WiLockConsole\obj\Debug\WiLockConsole.exe
+c:\users\jerem\documents\visual studio 2015\Projects\WiLockConsole\WiLockConsole\obj\Debug\WiLockConsole.pdb
