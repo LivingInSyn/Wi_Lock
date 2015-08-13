@@ -27,8 +27,8 @@ namespace WiLockConsole
                 if (state == "Connected")
                 { 
                     Wlan.Dot11Ssid ssid = wlanInterface.CurrentConnection.wlanAssociationAttributes.dot11Ssid;
-                    connectedSSIDs.Add(new String(Encoding.ASCII.GetChars(ssid.SSID, 0, (int)ssid.SSIDLength)));                  
-                    
+                    connectedSSIDs.Add(new String(Encoding.ASCII.GetChars(ssid.SSID, 0, (int)ssid.SSIDLength)));
+                              
                 }
             }
             return connectedSSIDs;
