@@ -23,12 +23,19 @@ namespace WiLockConsole
             
             foreach (WlanClient.WlanInterface wlanInterface in wlan.Interfaces)
             {
-                string state = wlanInterface.InterfaceState.ToString();
-                if (state == "Connected")
+                try
                 { 
-                    Wlan.Dot11Ssid ssid = wlanInterface.CurrentConnection.wlanAssociationAttributes.dot11Ssid;
-                    connectedSSIDs.Add(new String(Encoding.ASCII.GetChars(ssid.SSID, 0, (int)ssid.SSIDLength)));
+                    string state = wlanInterface.InterfaceState.ToString();
+                    if (state == "Connected")
+                    { 
+                        Wlan.Dot11Ssid ssid = wlanInterface.CurrentConnection.wlanAssociationAttributes.dot11Ssid;
+                        connectedSSIDs.Add(new String(Encoding.ASCII.GetChars(ssid.SSID, 0, (int)ssid.SSIDLength)));
                               
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
                 }
             }
             return connectedSSIDs;

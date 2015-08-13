@@ -13,15 +13,50 @@ namespace WiLockConsole
     public class main
     {
         
+
+
         static void Main(string[] args)
         {
             //create the instances of classes we'll need
             wifi_status Status = new wifi_status();
             MachineLocker locker = new MachineLocker();
 
+            int trust_time = 0;
+            int no_trust_time = 0;
+            string[] trusted_networks = null;
+
             //get the configs from the App.config file
-            var networks_string = ConfigurationManager.AppSettings["TrustedNetworks"];
-            string[] trusted_networks = networks_string.Split(',');
+            //the trusted networks...
+            try
+            {
+                var networks_string = ConfigurationManager.AppSettings["TrustedNetworks"];
+                trusted_networks = networks_string.Split(',');
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error in the Trusted networks config");
+                Environment.Exit(0);
+            }
+            //the no Trust time
+            try
+            { 
+                no_trust_time = int.Parse(ConfigurationManager.AppSettings["NoTrustTime"]);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error in the No Trust Time setting, is it an Int?");
+                Environment.Exit(0);
+            }
+            try
+            {
+                trust_time = int.Parse(ConfigurationManager.AppSettings["TrustedTime"]);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error in the Trusted Time setting, is it an Int?");
+                Environment.Exit(0);
+            }
+
 
             //we'll look here to see if any of the networks are trusted
             bool trust_condition = false;
@@ -33,13 +68,12 @@ namespace WiLockConsole
                 
                 trust_condition = false;
 
+                //I know this says idle TICK count, but it's ms, 1000 'ticks' to a second
+                uint idle = GetLastUserInput.GetIdleTickCount();
+
                 foreach (string ssid in ssids)
                 {
-                    //Console.WriteLine(ssid);
-                    //I know this says idle TICK count, but it's ms, 1000 'ticks' to a second
-                    uint idle = GetLastUserInput.GetIdleTickCount();
-                    //Console.WriteLine(idle);
-
+                    
                     foreach (string network in trusted_networks)
                     {
                         //Console.WriteLine(network);
@@ -53,20 +87,23 @@ namespace WiLockConsole
 
                     //now, if trust condition != true, and if it's been more than 5 minutes, lock the machine
                     //we need to move idle to the app.config as well, 300000 is 5 minutes
-                    if(trust_condition == false && idle > 300000)
+                    if(trust_condition == false && idle > no_trust_time)
                     {
                         locker.LockMachine();
                     }
+                    else if (trust_time != 0)
+                    {
+                        if(idle > trust_time)
+                        {
+                            locker.LockMachine();
+                        }
+                    }
 
-                    Console.WriteLine("Currently Connected to: " + ssids);
-                    Console.WriteLine("We've been idle for: " + idle);
-                    Console.WriteLine("Trust Condition is: " + trust_condition);
-
-
-
-                    
+                                        
                 }
-                //Console.ReadLine();
+                Console.WriteLine("Currently Connected to: " + ssids);
+                Console.WriteLine("We've been idle for: " + idle);
+                Console.WriteLine("Trust Condition is: " + trust_condition);
                 Thread.Sleep(1000);
                 
             }
