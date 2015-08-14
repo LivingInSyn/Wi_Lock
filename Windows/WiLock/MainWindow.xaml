@@ -5,8 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WiLock"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="WiLock" Height="350" Width="250">
+    <Window.Background>
+        <SolidColorBrush Color="Gray" />
+    </Window.Background>
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="68" Foreground="White" Height="100" Grid.Column="0" Grid.Row="0">
+            <Underline>
+                WiLock
+            </Underline>
+        </TextBlock>
+        <ToggleButton Height="50" Width="200" VerticalAlignment="Top" Grid.Column="0" Grid.Row="1" Click="echoChecked">
+            ON
+        </ToggleButton>
     </Grid>
 </Window>

@@ -12,7 +12,7 @@ using WiLock.WifiClasses;
 
 namespace WiLockConsole
 {
-    public class main
+    /*public class main
     {
         
 
@@ -110,5 +110,5 @@ namespace WiLockConsole
                 
             }
         }
-    }
+    }*/
 }

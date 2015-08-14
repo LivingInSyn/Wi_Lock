@@ -1,1 +1,15 @@
 C:\Users\jerem\Documents\Wi_Lock\Windows\WiLock\bin\Debug\WiLock.exe.config
+C:\Users\jerem\Documents\Wi_Lock\Windows\WiLock\obj\Debug\WiLock.csprojResolveAssemblyReference.cache
+C:\Users\jerem\Documents\Wi_Lock\Windows\WiLock\obj\Debug\MainWindow.g.cs
+C:\Users\jerem\Documents\Wi_Lock\Windows\WiLock\obj\Debug\App.g.cs
+C:\Users\jerem\Documents\Wi_Lock\Windows\WiLock\obj\Debug\WiLock_MarkupCompile.cache
+C:\Users\jerem\Documents\Wi_Lock\Windows\WiLock\obj\Debug\WiLock_MarkupCompile.lref
+C:\Users\jerem\Documents\Wi_Lock\Windows\WiLock\bin\Debug\WiLock.exe
+C:\Users\jerem\Documents\Wi_Lock\Windows\WiLock\bin\Debug\WiLock.pdb
+C:\Users\jerem\Documents\Wi_Lock\Windows\WiLock\bin\Debug\ManagedWifi.dll
+C:\Users\jerem\Documents\Wi_Lock\Windows\WiLock\obj\Debug\MainWindow.baml
+C:\Users\jerem\Documents\Wi_Lock\Windows\WiLock\obj\Debug\WiLock.g.resources
+C:\Users\jerem\Documents\Wi_Lock\Windows\WiLock\obj\Debug\WiLock.Properties.Resources.resources
+C:\Users\jerem\Documents\Wi_Lock\Windows\WiLock\obj\Debug\WiLock.csproj.GenerateResource.Cache
+C:\Users\jerem\Documents\Wi_Lock\Windows\WiLock\obj\Debug\WiLock.exe
+C:\Users\jerem\Documents\Wi_Lock\Windows\WiLock\obj\Debug\WiLock.pdb

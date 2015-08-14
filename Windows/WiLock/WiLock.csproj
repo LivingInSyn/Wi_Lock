@@ -62,7 +62,7 @@
     </ApplicationDefinition>
     <Compile Include="LockingClass\GetLastUserInput.cs" />
     <Compile Include="LockingClass\MachineLocker.cs" />
-    <Compile Include="old_main_class\main.cs" />
+    <Compile Include="old_main_class\old_main.cs" />
     <Compile Include="WifiClasses\wifi_status.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
