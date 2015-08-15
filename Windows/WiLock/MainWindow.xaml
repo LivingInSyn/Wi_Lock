@@ -1,26 +1,37 @@
-﻿<Window x:Class="WiLock.MainWindow"
+﻿<Controls:MetroWindow x:Class="WiLock.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WiLock"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         mc:Ignorable="d"
-        Title="WiLock" Height="350" Width="250">
+        Title="WiLock" Height="450" Width="250">
     <Window.Background>
         <SolidColorBrush Color="Gray" />
     </Window.Background>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="100"></RowDefinition>
-            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="80"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="60"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="60"></RowDefinition>
         </Grid.RowDefinitions>
         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="68" Foreground="White" Height="100" Grid.Column="0" Grid.Row="0">
             <Underline>
                 WiLock
             </Underline>
         </TextBlock>
-        <ToggleButton Height="50" Width="200" VerticalAlignment="Top" Grid.Column="0" Grid.Row="1" Click="echoChecked">
-            ON
-        </ToggleButton>
+        <Controls:ToggleSwitch Header="Turn WiLock On or Off" Grid.Column="0" Grid.Row="1" Height="50" Width="200" OnLabel="Yes" OffLabel="No" Unchecked ="echoChecked" Checked="echoChecked"></Controls:ToggleSwitch>
+        <TextBlock HorizontalAlignment='Left' Grid.Row="2" Grid.Column="0" FontSize="24" Foreground="White">
+            Trusted Time
+        </TextBlock>
+        <TextBox Grid.Column="0" Grid.Row="3" Width="220" FontSize="20" Height="50" VerticalAlignment="top"></TextBox>
+        <TextBlock HorizontalAlignment='Left' Grid.Row="4" Grid.Column="0" FontSize="24" Foreground="White">
+            UnTrusted Time
+        </TextBlock>
+        <TextBox Grid.Column="0" Grid.Row="5" Width="220" FontSize="20" Height="50" VerticalAlignment="top"></TextBox>
     </Grid>
-</Window>
+</Controls:MetroWindow>

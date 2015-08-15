@@ -14,13 +14,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MahApps.Metro.Controls;
 
 namespace WiLock
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : MetroWindow
     {
         public MainWindow()
         {
@@ -29,7 +30,8 @@ namespace WiLock
 
         private void echoChecked(object sender, RoutedEventArgs e)
         {
-            if ((sender as ToggleButton).IsChecked ?? false)
+            Debug.WriteLine("Clicked");
+            if ((sender as ToggleSwitch).IsChecked ?? false)
             {
                 // Code for Checked state
                 Debug.WriteLine("checked click");

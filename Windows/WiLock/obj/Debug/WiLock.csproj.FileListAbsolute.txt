@@ -13,3 +13,7 @@ C:\Users\jerem\Documents\Wi_Lock\Windows\WiLock\obj\Debug\WiLock.Properties.Reso
 C:\Users\jerem\Documents\Wi_Lock\Windows\WiLock\obj\Debug\WiLock.csproj.GenerateResource.Cache
 C:\Users\jerem\Documents\Wi_Lock\Windows\WiLock\obj\Debug\WiLock.exe
 C:\Users\jerem\Documents\Wi_Lock\Windows\WiLock\obj\Debug\WiLock.pdb
+C:\Users\jerem\Documents\Wi_Lock\Windows\WiLock\bin\Debug\MahApps.Metro.dll
+C:\Users\jerem\Documents\Wi_Lock\Windows\WiLock\bin\Debug\System.Windows.Interactivity.dll
+C:\Users\jerem\Documents\Wi_Lock\Windows\WiLock\bin\Debug\MahApps.Metro.xml
+C:\Users\jerem\Documents\Wi_Lock\Windows\WiLock\obj\Debug\App.baml
