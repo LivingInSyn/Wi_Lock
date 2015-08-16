@@ -41,5 +41,15 @@ namespace WiLock
                 Debug.WriteLine("not checked");
             }
         }
+
+        private void clickApply(object sender, RoutedEventArgs e)
+        {
+            Debug.WriteLine("Apply Clicked");
+        }
+
+        private void clickCancel(object sender, RoutedEventArgs e)
+        {
+            Debug.WriteLine("Cancel Clicked");
+        }
     }
 }

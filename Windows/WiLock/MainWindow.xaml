@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WiLock"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         mc:Ignorable="d"
-        Title="WiLock" Height="450" Width="250">
+        Title="wilock" Height="500" Width="250">
     <Window.Background>
         <SolidColorBrush Color="Gray" />
     </Window.Background>
@@ -18,6 +18,7 @@
             <RowDefinition Height="60"></RowDefinition>
             <RowDefinition Height="40"></RowDefinition>
             <RowDefinition Height="60"></RowDefinition>
+            <RowDefinition Height="60"></RowDefinition>
         </Grid.RowDefinitions>
         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="68" Foreground="White" Height="100" Grid.Column="0" Grid.Row="0">
             <Underline>
@@ -25,13 +26,15 @@
             </Underline>
         </TextBlock>
         <Controls:ToggleSwitch Header="Turn WiLock On or Off" Grid.Column="0" Grid.Row="1" Height="50" Width="200" OnLabel="Yes" OffLabel="No" Unchecked ="echoChecked" Checked="echoChecked"></Controls:ToggleSwitch>
-        <TextBlock HorizontalAlignment='Left' Grid.Row="2" Grid.Column="0" FontSize="24" Foreground="White">
+        <TextBlock HorizontalAlignment='Left' Grid.Row="2" Grid.Column="0" FontSize="24" Foreground="White" Margin="15,0,0,0">
             Trusted Time
         </TextBlock>
         <TextBox Grid.Column="0" Grid.Row="3" Width="220" FontSize="20" Height="50" VerticalAlignment="top"></TextBox>
-        <TextBlock HorizontalAlignment='Left' Grid.Row="4" Grid.Column="0" FontSize="24" Foreground="White">
-            UnTrusted Time
+        <TextBlock HorizontalAlignment='Left' Grid.Row="4" Grid.Column="0" FontSize="24" Foreground="White" Margin="15,0,0,0">
+            Untrusted Time
         </TextBlock>
         <TextBox Grid.Column="0" Grid.Row="5" Width="220" FontSize="20" Height="50" VerticalAlignment="top"></TextBox>
+        <Button Grid.Column="0" Grid.Row="6" Width="100" FontSize="20" Height="50" HorizontalAlignment="Right" Margin="0,0,15,0" Click="clickApply">Apply</Button>
+        <Button Grid.Column="0" Grid.Row="6" Width="100" FontSize="20" Height="50" HorizontalAlignment="Left" Margin="15,0,0,0" Click="clickCancel">Cancel</Button>
     </Grid>
 </Controls:MetroWindow>
