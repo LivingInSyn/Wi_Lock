@@ -15,6 +15,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MahApps.Metro.Controls;
+using WiLock.GuiHelpers;
+using System.ComponentModel;
 
 namespace WiLock
 {
@@ -26,6 +28,8 @@ namespace WiLock
         public MainWindow()
         {
             InitializeComponent();
+
+            MinimizeToTray.Enable(this);
         }
 
         private void echoChecked(object sender, RoutedEventArgs e)
@@ -50,6 +54,14 @@ namespace WiLock
         private void clickCancel(object sender, RoutedEventArgs e)
         {
             Debug.WriteLine("Cancel Clicked");
+        }
+
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            //trying to catch a thing here
+            Debug.WriteLine("caught");
+            e.Cancel = true;
+            this.WindowState = WindowState.Minimized;
         }
     }
 }

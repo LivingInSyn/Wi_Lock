@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:WiLock"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         mc:Ignorable="d"
+        ResizeMode="CanMinimize"
         Title="wilock" Height="500" Width="250">
     <Window.Background>
         <SolidColorBrush Color="Gray" />
