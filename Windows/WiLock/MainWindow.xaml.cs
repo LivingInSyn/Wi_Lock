@@ -17,6 +17,7 @@ using System.Windows.Shapes;
 using MahApps.Metro.Controls;
 using WiLock.GuiHelpers;
 using System.ComponentModel;
+using WiLock.wiLockLogic;
 
 namespace WiLock
 {
@@ -30,8 +31,11 @@ namespace WiLock
             InitializeComponent();
 
             MinimizeToTray.Enable(this);
+            //create an instance of the WiLocker class which is the business logic
+            WiLocker locker = new WiLocker();
         }
 
+        //this handles the slider for if it's on or off
         private void echoChecked(object sender, RoutedEventArgs e)
         {
             Debug.WriteLine("Clicked");
@@ -46,16 +50,24 @@ namespace WiLock
             }
         }
 
+        //handles the Apply button
         private void clickApply(object sender, RoutedEventArgs e)
         {
             Debug.WriteLine("Apply Clicked");
+            //get the text from the text boxes
+
         }
 
+        //handles the cancel button
         private void clickCancel(object sender, RoutedEventArgs e)
         {
             Debug.WriteLine("Cancel Clicked");
+            this.Close();
         }
 
+
+        //This handles the behavior when we click the X on the window
+        //we overrode this so that it would minimize to the tray
         protected override void OnClosing(CancelEventArgs e)
         {
             //trying to catch a thing here
