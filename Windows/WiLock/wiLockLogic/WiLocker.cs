@@ -54,5 +54,12 @@ namespace WiLock.wiLockLogic
         //ADD UPDATE SETTINGS METHOD
 
         //ADD SET METHOD for the times
+        public void setTimes(int trust, int noTrust)
+        {
+            trust_time = trust;
+            no_trust_time = noTrust;
+        }
+
+
     }
 }
